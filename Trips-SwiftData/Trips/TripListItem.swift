@@ -44,7 +44,7 @@ struct TripListItem: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     List {
         TripListItem(trip: .preview)
             .modelContainer(PreviewSampleData.container)

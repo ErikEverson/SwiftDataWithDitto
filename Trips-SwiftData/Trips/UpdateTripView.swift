@@ -106,7 +106,7 @@ struct UpdateTripView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     UpdateTripView(trip: .preview)
         .modelContainer(PreviewSampleData.container)
 }

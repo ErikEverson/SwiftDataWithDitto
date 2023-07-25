@@ -49,7 +49,7 @@ struct BucketListItemView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     BucketListItemView(item: .preview)
         .modelContainer(PreviewSampleData.container)
 }

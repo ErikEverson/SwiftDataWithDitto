@@ -66,10 +66,12 @@ struct BucketListView: View {
             return trip.bucketList
         }
         
+        var descriptor = FetchDescriptor<BucketListItem>()
         let tripName = trip.name
-        let filteredList = try? trip.bucketList.filter(#Predicate { item in
+        descriptor.predicate = #Predicate { item in
             item.title.contains(searchText) && tripName == item.trip?.name
-        })
+        }
+        let filteredList = try? modelContext.fetch(descriptor)
 
         return filteredList ?? []
     }
@@ -93,7 +95,7 @@ struct BucketListItemToggle: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     BucketListView(trip: .preview)
         .modelContainer(PreviewSampleData.container)
 }

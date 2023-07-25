@@ -68,7 +68,7 @@ struct EditLivingAccommodationsView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     EditLivingAccommodationsView(trip: .preview)
         .modelContainer(PreviewSampleData.container)
 }

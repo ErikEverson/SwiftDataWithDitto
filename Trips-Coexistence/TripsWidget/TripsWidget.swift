@@ -9,32 +9,12 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-struct PersistenceController {
-    let appGroupContainerID = "group.com.example.apple-samplecode.SampleTrips"
-    
-    static let shared = PersistenceController()
-
-    let url: URL
-    init() {
-        guard let appGroupContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupContainerID) else {
-            fatalError("Shared file container could not be created.")
-        }
-        url = appGroupContainer.appendingPathComponent("Trips.sqlite")
-    }
-}
-
 struct TripsWidget: Widget {
     let kind: String = "TripsWidget"
-    let container: ModelContainer
-    
-    init() {
-        container = try! ModelContainer(for: Trip.self, ModelConfiguration(url: PersistenceController.shared.url))
-    }
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            TripsWidgetEntryView()
-                .modelContainer(container)
+            TripsWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Future Trips")
         .description("See your upcoming trips.")
@@ -42,6 +22,22 @@ struct TripsWidget: Widget {
 }
 
 struct Provider: TimelineProvider {
+    private let modelContainer: ModelContainer
+    
+    init() {
+        let appGroupContainerID = "group.com.example.apple-samplecode.SampleTrips"
+        guard let appGroupContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupContainerID) else {
+            fatalError("Shared file container could not be created.")
+        }
+        let url = appGroupContainer.appendingPathComponent("Trips.sqlite")
+
+        do {
+            modelContainer = try ModelContainer(for: Trip.self, ModelConfiguration(url: url))
+        } catch {
+            fatalError("Failed to create the model container: \(error)")
+        }
+    }
+
     func placeholder(in context: Context) -> SimpleEntry {
         return SimpleEntry.placeholderEntry
     }
@@ -51,14 +47,38 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        var entries: [SimpleEntry] = []
-        
-        _ = PersistenceController.shared
-        
-        entries.append(SimpleEntry.placeholderEntry)
-        
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        /**
+         modelContainer.mainContext requires main actor.
+         This method returns immediately, but calls the completion handler at the end of the task.
+         */
+        Task { @MainActor in
+            var fetchDescriptor = FetchDescriptor(sortBy: [SortDescriptor(\Trip.startDate, order: .forward)])
+            let now = Date.now
+            fetchDescriptor.predicate = #Predicate { $0.endDate >= now }
+            if let upcomingTrips = try? modelContainer.mainContext.fetch(fetchDescriptor) {
+                if let trip = upcomingTrips.first {
+                    let newEntry = SimpleEntry(date: .now,
+                                               startDate: trip.startDate,
+                                               endDate: trip.endDate,
+                                               name: trip.name,
+                                               destination: trip.destination)
+                    let timeline = Timeline(entries: [newEntry], policy: .after(newEntry.endDate))
+                    completion(timeline)
+                    return
+                }
+            }
+            /**
+             Return "No Trips" entry with .never policy when there is no upcoming trip.
+             The main app triggers a widget update when adding a new trip.
+             */
+            let newEntry = SimpleEntry(date: .now,
+                                       startDate: .now,
+                                       endDate: .now,
+                                       name: "No Trips",
+                                       destination: "")
+            let timeline = Timeline(entries: [newEntry], policy: .never)
+            completion(timeline)
+        }
     }
 }
 
@@ -78,8 +98,7 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct TripsWidgetEntryView: View {
-    @Query(sort: \.startDate, order: .forward)
-    var trips: [Trip]
+    let entry: SimpleEntry
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -87,41 +106,32 @@ struct TripsWidgetEntryView: View {
                 HStack {
                     Image(systemName: "car.circle")
                         .imageScale(.large)
-                    if let trip {
-                        Text(trip.name)
-                            .font(.system(.title2).weight(.semibold))
-                            .minimumScaleFactor(0.5)
-                    } else {
-                        Text("No Trips!")
-                    }
+                    Text(entry.name)
+                        .font(.system(.title2).weight(.semibold))
+                        .minimumScaleFactor(0.5)
                     Spacer()
                 }
                 .foregroundColor(.green)
                 
                 Divider()
-                if let trip {
-                    Text(trip.destination)
+                if !entry.destination.isEmpty {
+                    Text(entry.destination)
                         .font(.system(.title3).weight(.semibold))
                         .minimumScaleFactor(0.5)
-                    
-                    let startDate = trip.startDate
-                    Text(startDate, style: .date)
+                    Text(entry.startDate, style: .date)
                         .foregroundColor(.gray)
-                    
-                    let endDate = trip.endDate
-                    Text(endDate, style: .date)
+                    Text(entry.endDate, style: .date)
                         .foregroundColor(.gray)
                 }
             }
         }
-    }
-    
-    var trip: Trip? {
-        return trips.first(where: { $0.endDate > Date.now })
+        .containerBackground(for: .widget) {
+            Color.white
+        }
     }
 }
 
-@MainActor #Preview {
-    TripsWidgetEntryView()
+#Preview {
+    TripsWidgetEntryView(entry: SimpleEntry.placeholderEntry)
         .modelContainer(PreviewSampleData.container)
 }

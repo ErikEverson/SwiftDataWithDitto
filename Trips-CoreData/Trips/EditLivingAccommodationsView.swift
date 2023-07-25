@@ -83,7 +83,7 @@ struct EditLivingAccommodationsView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     EditLivingAccommodationsView(trip: .preview)
         .environment(\.managedObjectContext,
                       PersistenceController.preview.container.viewContext)

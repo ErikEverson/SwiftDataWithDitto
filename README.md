@@ -19,9 +19,9 @@ Open the sample code project in Xcode. Before building it, do the following:
 
 ## Adopt SwiftData
 
-The SwiftData sample sets up the schema with Swift types that conform to the `PersistentModel` protocol, which captures information about the app’s types, including properties and relationships. Each model file corresponds to an individual entity, with identical entity names, properties, and relationships as its Core Data counterpart.
+The SwiftData sample sets up the schema with Swift types that conform to the [`PersistentModel`](https://developer.apple.com/documentation/swiftdata/persistentmodel) protocol, which captures information about the app’s types, including properties and relationships. Each model file corresponds to an individual entity, with identical entity names, properties, and relationships as its Core Data counterpart.
 
-Each model file in this sample uses the `@Model` macro to add necessary conformances for `PersistentModel` and `Observable`:
+Each model file in this sample uses the [`Model()`](https://developer.apple.com/documentation/swiftdata/model()) macro to add necessary conformances for the `PersistentModel` and [`Observable`](https://developer.apple.com/documentation/observation/observable) protocols:
 
 ``` swift
 @Model final class Trip {
@@ -37,18 +37,19 @@ Each model file in this sample uses the `@Model` macro to add necessary conforma
     var livingAccommodation: LivingAccommodation?
 ```
 
-Additionally, the app sets up the container using `ModelContainer` to ensure that all views access the same `ModelContainer`.
+Additionally, the app sets up the container using [`ModelContainer`](https://developer.apple.com/documentation/swiftdata/modelcontainer) to ensure that all views access the same `ModelContainer`.
 ``` swift
 .modelContainer(for: [Trip.self, BucketListItem.self, LivingAccommodation.self])
 ```
 
-Setting up the `ModelContainer` also creates and set a default `ModelContext` in the environment. The app can access the `ModelContext` from any scene or view using an environment property.
+Setting up the `ModelContainer` also creates and set a default [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) in the environment. The app can access the `ModelContext` from any scene or view using an environment property.
 ``` swift
 @Environment(\.modelContext) private var modelContext
 ```
 
-## Create persisted dataObject
-This app creates a new instance of a trip and inserts it into the `ModelContext` for persistence:
+## Create a persisted data object
+
+This app creates a new instance of a trip and inserts it into the [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) for persistence:
 ``` swift
 let newTrip = Trip(name: name, destination: destination, startDate: startDate, endDate: endDate)
 modelContext.insert(newTrip)
@@ -56,9 +57,9 @@ modelContext.insert(newTrip)
 
 ## Persist data
 
-The app uses the SwiftData implicit save feature to persist data. This implicit save occurs on UI life cycle events and on a timer after the context changes.
+The app uses the SwiftData implicit save feature to persist data. This implicit save occurs on UI life cycle events and on a timer after the context changes. For more information about enabling autosave, see the [`autosaveEnabled`](https://developer.apple.com/documentation/swiftdata/modelcontext/autosaveenabled) property.
 
-The app calls `delete()` on the ModelContext, while passing in the instance that needs to be deleted.
+The app calls [`delete(_:)`](https://developer.apple.com/documentation/swiftdata/modelcontext/delete(_:)) on the [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) with the instance to delete.
 
 ``` swift
 modelContext.delete(trip)
@@ -66,11 +67,22 @@ modelContext.delete(trip)
 
 ## Fetch persisted data
 
-This sample app fetches the complete list of upcoming trips by wrapping an array of trips in `@Query`, which fetches `Trip` objects from the container.
+This sample app fetches the complete list of upcoming trips by wrapping an array of trips in [`Query`](https://developer.apple.com/documentation/swiftdata/query), which fetches `Trip` objects from the container.
 
 ``` swift
-@Query(sort: \.startDate, order: .forward)
+@Query(sort: \Trip.startDate, order: .forward)
 var trips: [Trip]
+```
+
+This sample also fetches data by calling [`fetch(_:)`](https://developer.apple.com/documentation/swiftdata/modelcontext/fetch(_:)) on the [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) and passing in a [`FetchDescriptor`](https://developer.apple.com/documentation/swiftdata/fetchdescriptor) that specifies both the entity to retrieve data from as well as a corresponding [`Predicate`](https://developer.apple.com/documentation/foundation/predicate) specifying the conditions for the object to fetch.
+
+``` swift
+var descriptor = FetchDescriptor<BucketListItem>()
+let tripName = trip.name
+descriptor.predicate = #Predicate { item in
+    item.title.contains(searchText) && tripName == item.trip?.name
+}
+let filteredList = try? modelContext.fetch(descriptor)
 ```
 
 ## Coexistence between Core Data and SwiftData
@@ -108,9 +120,9 @@ description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 
 By default, SwiftData behaves in the following way when determining where it persists data:
 
-1. It persists data store to the app’s Application Support directory.
-2. This sample app uses App Groups to access shared containers and share data between the SwiftData widget extension and the Core Data host app. For an app that has the App Group entitlement (`com.apple.security.application-groups`), it persists the data store to the root directory of the app group container. For apps that evolve from a version that doesn’t have any app group container to a version that has one, SwiftData copies the existing store to the app group container.
+* It persists data store to the app’s Application Support directory.
+* This sample app uses App Groups to access shared containers and share data between the SwiftData widget extension and the Core Data host app. For an app that has the [App Groups Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups), it persists the data store to the root directory of the app group container. For apps that evolve from a version that doesn’t have any app group container to a version that has one, SwiftData copies the existing store to the app group container.
 
-In this sample, the main app and widget share the same store via an app group container, and the store is located in the default location in the app group container. To ensure SwiftData accesses the same store, the main app and widget both share the ModelContainer.
+In this sample, the main app and widget share the same store via an app group container, and the store is located in the default location in the app group container. To ensure SwiftData accesses the same store, the main app and widget both share the [`ModelContainer`](https://developer.apple.com/documentation/swiftdata/modelcontainer).
 
 The widget in this sample doesn’t write to the SwiftData store, but in general, an app and its extensions can safely read and write to the same SwiftData store simultaneously.

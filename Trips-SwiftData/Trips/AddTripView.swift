@@ -97,7 +97,7 @@ struct AddTripView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     AddTripView()
         .modelContainer(PreviewSampleData.container)
 }

@@ -11,7 +11,7 @@ import WidgetKit
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startDate, order: .forward)
+    @Query(sort: \Trip.startDate, order: .forward)
     var trips: [Trip]
     
     @State private var showAddTrip = false
@@ -90,7 +90,7 @@ struct ContentView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     ContentView()
         .modelContainer(PreviewSampleData.container)
 }

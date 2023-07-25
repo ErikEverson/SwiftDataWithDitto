@@ -145,7 +145,7 @@ struct TripDetailView: View {
     }
 }
 
-@MainActor #Preview {
+#Preview {
     TripDetailView(trip: .preview)
         .modelContainer(PreviewSampleData.container)
 }
