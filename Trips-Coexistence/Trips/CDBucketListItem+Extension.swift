@@ -21,12 +21,13 @@ extension CDBucketListItem {
     }
     
     static var preview: CDBucketListItem {
-        let item = CDBucketListItem()
+        let result = PersistenceController.preview
+        let viewContext = result.container.viewContext
+        let item = CDBucketListItem(context: viewContext)
         item.title = "A bucket list item title"
         item.details = "Details of my bucket list item"
         item.hasReservation = true
         item.isInPlan = true
-        item.trip = .preview
         return item
     }
 }

@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
     
     init() {
         do {
-            modelContainer = try ModelContainer(for: [Trip.self, BucketListItem.self, LivingAccommodation.self])
+            modelContainer = try ModelContainer(for: Trip.self)
         } catch {
             fatalError("Failed to create the model container: \(error)")
         }
@@ -125,7 +125,8 @@ struct TripsWidgetEntryView: View {
     }
 }
 
-#Preview {
-    TripsWidgetEntryView(entry: SimpleEntry.placeholderEntry)
-        .modelContainer(PreviewSampleData.container)
+#Preview(as: .systemSmall) {
+    TripsWidget()
+} timeline: {
+    SimpleEntry.placeholderEntry
 }

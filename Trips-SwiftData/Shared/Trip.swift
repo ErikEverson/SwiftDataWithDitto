@@ -15,10 +15,10 @@ import SwiftData
     var name: String
     var startDate: Date
     
-    @Relationship(.cascade, inverse: \BucketListItem.trip)
-    var bucketList: [BucketListItem] = []
+    @Relationship(deleteRule: .cascade, inverse: \BucketListItem.trip)
+    var bucketList: [BucketListItem] = [BucketListItem]()
     
-    @Relationship(.cascade, inverse: \LivingAccommodation.trip)
+    @Relationship(deleteRule: .cascade, inverse: \LivingAccommodation.trip)
     var livingAccommodation: LivingAccommodation?
     
     init(

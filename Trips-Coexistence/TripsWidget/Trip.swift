@@ -16,19 +16,18 @@ final class Trip {
     var name: String
     var startDate: Date
     
-    @Relationship(.cascade, inverse: \BucketListItem.trip)
-    var bucketList: [BucketListItem] = [BucketListItem]()
+    @Relationship(deleteRule: .cascade, inverse: \BucketListItem.trip)
+    var bucketList: [BucketListItem]
     
-    @Relationship(.cascade, inverse: \LivingAccommodation.trip)
+    @Relationship(deleteRule: .cascade, inverse: \LivingAccommodation.trip)
     var livingAccommodation: LivingAccommodation?
-    
-    init() {}
     
     init(name: String, destination: String, startDate: Date = .now, endDate: Date = .distantFuture) {
         self.name = name
         self.destination = destination
         self.startDate = startDate
         self.endDate = endDate
+        self.bucketList = []
     }
 }
 

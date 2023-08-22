@@ -45,8 +45,9 @@ struct TripListItem: View {
 }
 
 #Preview {
-    List {
-        TripListItem(trip: .preview)
-            .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        List {
+            TripListItem(trip: .preview)
+        }
     }
 }

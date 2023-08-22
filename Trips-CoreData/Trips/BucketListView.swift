@@ -12,9 +12,14 @@ struct BucketListView: View {
     var trip: Trip
     
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)])
-    private var bucketList: FetchedResults<BucketListItem>
+    
+    @FetchRequest private var bucketList: FetchedResults<BucketListItem>
+    
+    init(trip: Trip) {
+        self.trip = trip
+        self._bucketList = FetchRequest<BucketListItem>(sortDescriptors: [SortDescriptor(\.title)],
+                                                        predicate: NSPredicate(format: "trip.name = %@", trip.name ?? ""))
+    }
     
     @State private var showAddItem = false
     @State private var searchText = ""

@@ -27,7 +27,9 @@ extension CDTrip {
     }
     
     static var preview: CDTrip {
-        let trip = CDTrip()
+        let result = PersistenceController.preview
+        let viewContext = result.container.viewContext
+        let trip = CDTrip(context: viewContext)
         trip.name = "Trip Name"
         trip.destination = "Trip destination"
         trip.startDate = .now

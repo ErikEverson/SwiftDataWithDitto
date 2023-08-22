@@ -50,7 +50,8 @@ struct BucketListItemView: View {
 }
 
 #Preview {
-    BucketListItemView(item: .preview)
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        BucketListItemView(item: .preview)
+    }
 }
 

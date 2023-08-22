@@ -15,7 +15,7 @@ actor PreviewSampleData {
     @MainActor
     static var container: ModelContainer = {
         let schema = Schema([Trip.self, BucketListItem.self, LivingAccommodation.self])
-        let configuration = ModelConfiguration(inMemory: true)
+        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: schema, configurations: [configuration])
         let sampleData: [any PersistentModel] = [
             Trip.preview, BucketListItem.preview, LivingAccommodation.preview

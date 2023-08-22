@@ -12,8 +12,6 @@ final class LivingAccommodation {
     var address: String
     var placeName: String
     var trip: Trip?
-    
-    init() {}
 
     init(address: String, placeName: String) {
         self.address = address

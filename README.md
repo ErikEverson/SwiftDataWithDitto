@@ -30,16 +30,16 @@ Each model file in this sample uses the [`Model()`](https://developer.apple.com/
     var name: String
     var startDate: Date
     
-    @Relationship(.cascade, inverse: \BucketListItem.trip)
-    var bucketList: [BucketListItem] = []
+    @Relationship(deleteRule: .cascade, inverse: \BucketListItem.trip)
+    var bucketList: [BucketListItem] = [BucketListItem]()
     
-    @Relationship(.cascade, inverse: \LivingAccommodation.trip)
+    @Relationship(deleteRule: .cascade, inverse: \LivingAccommodation.trip)
     var livingAccommodation: LivingAccommodation?
 ```
 
 Additionally, the app sets up the container using [`ModelContainer`](https://developer.apple.com/documentation/swiftdata/modelcontainer) to ensure that all views access the same `ModelContainer`.
 ``` swift
-.modelContainer(for: [Trip.self, BucketListItem.self, LivingAccommodation.self])
+.modelContainer(for: Trip.self)
 ```
 
 Setting up the `ModelContainer` also creates and set a default [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) in the environment. The app can access the `ModelContext` from any scene or view using an environment property.

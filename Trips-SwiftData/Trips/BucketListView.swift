@@ -96,6 +96,9 @@ struct BucketListItemToggle: View {
 }
 
 #Preview {
-    BucketListView(trip: .preview)
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            BucketListView(trip: .preview)
+        }
+    }
 }

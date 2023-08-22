@@ -15,8 +15,6 @@ final class BucketListItem {
     var title: String
     var trip: Trip?
     
-    init() {}
-    
     init(title: String, details: String, hasReservation: Bool, isInPlan: Bool) {
         self.title = title
         self.details = details

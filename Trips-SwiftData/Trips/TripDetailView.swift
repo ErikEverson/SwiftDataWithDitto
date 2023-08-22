@@ -146,6 +146,7 @@ struct TripDetailView: View {
 }
 
 #Preview {
-    TripDetailView(trip: .preview)
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        TripDetailView(trip: .preview)
+    }
 }

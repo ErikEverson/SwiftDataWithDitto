@@ -27,7 +27,9 @@ extension Trip {
     }
     
     static var preview: Trip {
-        let trip = Trip()
+        let result = PersistenceController.preview
+        let viewContext = result.container.viewContext
+        let trip = Trip(context: viewContext)
         trip.name = "Trip Name"
         trip.destination = "Trip destination"
         trip.startDate = .now

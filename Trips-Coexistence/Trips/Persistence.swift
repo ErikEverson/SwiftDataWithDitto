@@ -16,9 +16,23 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newTrip = CDTrip(context: viewContext)
-        }
+        let newTrip = CDTrip(context: viewContext)
+        newTrip.name = "Trip Name"
+        newTrip.destination = "Trip destination"
+        newTrip.startDate = .now
+        newTrip.endDate = .now.addingTimeInterval(4 * 3600)
+        
+        let newBucketListItem = CDBucketListItem(context: viewContext)
+        newBucketListItem.title = "A bucket list item title"
+        newBucketListItem.details = "Details of my bucket list item"
+        newBucketListItem.hasReservation = true
+        newBucketListItem.isInPlan = true
+        newBucketListItem.trip = newTrip
+        
+        let livingAccommodations = CDLivingAccommodation(context: viewContext)
+        livingAccommodations.address = "A new address"
+        livingAccommodations.placeName = "A place name"
+        livingAccommodations.trip = newTrip
         do {
             try viewContext.save()
         } catch {

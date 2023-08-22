@@ -83,7 +83,7 @@ struct ContentView: View {
         /**
          Unselect the item before deleting it.
          */
-        if trip.objectID == selection?.objectID {
+        if trip.persistentModelID == selection?.persistentModelID {
             selection = nil
         }
         modelContext.delete(trip)

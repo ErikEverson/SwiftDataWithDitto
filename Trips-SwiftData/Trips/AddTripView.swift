@@ -98,6 +98,7 @@ struct AddTripView: View {
 }
 
 #Preview {
-    AddTripView()
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        AddTripView()
+    }
 }

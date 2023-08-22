@@ -107,6 +107,7 @@ struct UpdateTripView: View {
 }
 
 #Preview {
-    UpdateTripView(trip: .preview)
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        UpdateTripView(trip: .preview)
+    }
 }

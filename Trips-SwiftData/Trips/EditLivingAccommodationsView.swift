@@ -69,6 +69,7 @@ struct EditLivingAccommodationsView: View {
 }
 
 #Preview {
-    EditLivingAccommodationsView(trip: .preview)
-        .modelContainer(PreviewSampleData.container)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        EditLivingAccommodationsView(trip: .preview)
+    }
 }

@@ -32,7 +32,7 @@ struct Provider: TimelineProvider {
         let url = appGroupContainer.appendingPathComponent("Trips.sqlite")
 
         do {
-            modelContainer = try ModelContainer(for: Trip.self, ModelConfiguration(url: url))
+            modelContainer = try ModelContainer(for: Trip.self, configurations: ModelConfiguration(url: url))
         } catch {
             fatalError("Failed to create the model container: \(error)")
         }
@@ -131,7 +131,8 @@ struct TripsWidgetEntryView: View {
     }
 }
 
-#Preview {
-    TripsWidgetEntryView(entry: SimpleEntry.placeholderEntry)
-        .modelContainer(PreviewSampleData.container)
+#Preview(as: .systemSmall) {
+    TripsWidget()
+} timeline: {
+    SimpleEntry.placeholderEntry
 }
