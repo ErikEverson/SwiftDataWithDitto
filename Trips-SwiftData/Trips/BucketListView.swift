@@ -40,7 +40,7 @@ struct BucketListView: View {
         .searchable(text: $searchText)
         .navigationTitle("Bucket List")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
                 EditButton()
                     .disabled(filteredBucketList.isEmpty)
             }
@@ -95,10 +95,9 @@ struct BucketListItemToggle: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        NavigationStack {
-            BucketListView(trip: .preview)
-        }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    NavigationStack {
+        BucketListView(trip: trips.first!)
     }
 }

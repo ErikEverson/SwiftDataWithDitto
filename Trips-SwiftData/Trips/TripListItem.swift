@@ -6,9 +6,11 @@ A SwiftUI list item view that shows trip metadata.
 */
 
 import SwiftUI
+import SwiftData
 
 struct TripListItem: View {
     var trip: Trip
+    let isUnread: Bool
     
     var body: some View {
         NavigationLink(value: trip) {
@@ -21,7 +23,10 @@ struct TripListItem: View {
                             .font(.system(size: 48))
                             .foregroundStyle(.background)
                     }
-                    .padding(.trailing)
+                
+                Circle()
+                    .fill(isUnread ? .blue : .clear)
+                    .frame(width: 8, height: 8)
                 
                 VStack(alignment: .leading) {
                     Text(trip.displayName)
@@ -44,10 +49,9 @@ struct TripListItem: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        List {
-            TripListItem(trip: .preview)
-        }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    List {
+        TripListItem(trip: trips.first!, isUnread: true)
     }
 }

@@ -6,6 +6,8 @@ A SwiftUI view that edits living accommodations.
 */
 
 import SwiftUI
+import WidgetKit
+import SwiftData
 
 struct EditLivingAccommodationsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -13,6 +15,7 @@ struct EditLivingAccommodationsView: View {
     
     @State private var placeName = ""
     @State private var address = ""
+    @State private var isConfirmed = false
     
     var trip: Trip
     
@@ -27,6 +30,14 @@ struct EditLivingAccommodationsView: View {
             Section(header: Text("Address of Living Accommodation")) {
                 TripGroupBox {
                     TextField(addressPlaceholder, text: $address)
+                }
+            }
+            
+            Section(header: Text("Confirmation")) {
+                TripGroupBox {
+                    Toggle(isOn: $isConfirmed) {
+                        Text("Get confirmed")
+                    }
                 }
             }
         }
@@ -44,6 +55,7 @@ struct EditLivingAccommodationsView: View {
         .onAppear {
             placeName = trip.livingAccommodation?.placeName ?? ""
             address = trip.livingAccommodation?.address ?? ""
+            isConfirmed = trip.livingAccommodation?.isConfirmed ?? false
         }
     }
 
@@ -60,16 +72,19 @@ struct EditLivingAccommodationsView: View {
             if let livingAccommodation = trip.livingAccommodation {
                 livingAccommodation.address = address
                 livingAccommodation.placeName = placeName
+                livingAccommodation.isConfirmed = isConfirmed
             } else {
-                let newLivingAccommodation = LivingAccommodation(address: address, placeName: placeName)
+                let newLivingAccommodation = LivingAccommodation(address: address,
+                                                                 placeName: placeName,
+                                                                 isConfirmed: isConfirmed)
                 newLivingAccommodation.trip = trip
             }
+            WidgetCenter.shared.reloadTimelines(ofKind: "TripsWidget")
         }
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        EditLivingAccommodationsView(trip: .preview)
-    }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    EditLivingAccommodationsView(trip: trips.first!)
 }

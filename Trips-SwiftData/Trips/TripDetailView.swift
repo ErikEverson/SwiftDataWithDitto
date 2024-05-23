@@ -6,6 +6,7 @@ A SwiftUI view that shows the details of a trip.
 */
 
 import SwiftUI
+import SwiftData
 
 struct TripDetailView: View {
     var trip: Trip
@@ -56,12 +57,7 @@ struct TripDetailView: View {
             TripGroupBox {
                 HStack {
                     VStack(alignment: .leading) {
-                        if let livingAccommodation = trip.livingAccommodation {
-                            Text(livingAccommodation.displayPlaceName)
-                            Text(livingAccommodation.displayAddress)
-                        } else {
-                            Text("<No Living Accommodations>")
-                        }
+                        livingAccommodationInfoView()
                     }
                     Spacer()
                 }
@@ -117,12 +113,7 @@ struct TripDetailView: View {
 
         Section {
             VStack(alignment: .leading) {
-                if let livingAccommodation = trip.livingAccommodation {
-                    Text(livingAccommodation.displayPlaceName)
-                    Text(livingAccommodation.displayAddress)
-                } else {
-                    Text("<No Living Accommodations>")
-                }
+                livingAccommodationInfoView()
             }
             NavigationLink {
                 EditLivingAccommodationsView(trip: trip)
@@ -143,10 +134,25 @@ struct TripDetailView: View {
             Text("Bucket List")
         }
     }
+    
+    @ViewBuilder
+    private func livingAccommodationInfoView() -> some View {
+        if let livingAccommodation = trip.livingAccommodation {
+            Text(livingAccommodation.displayPlaceName)
+            Text(livingAccommodation.displayAddress)
+            Divider()
+            HStack {
+                Text("Confirmation")
+                Spacer()
+                Image(systemName: livingAccommodation.isConfirmed ? "checkmark.circle" : "circle")
+            }
+        } else {
+            Text("<No Living Accommodations>")
+        }
+    }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        TripDetailView(trip: .preview)
-    }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    TripDetailView(trip: trips.first!)
 }

@@ -10,46 +10,24 @@ import SwiftData
 import WidgetKit
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Trip.startDate, order: .forward)
-    var trips: [Trip]
-    
+    @Environment(\.scenePhase) private var scenePhase
     @State private var showAddTrip = false
     @State private var selection: Trip?
-    @State private var path: [Trip] = []
-    
+    @State private var searchText: String = ""
+    @State private var tripCount = 0
+    @State private var unreadTripIdentifiers: [PersistentIdentifier] = []
+
     var body: some View {
         NavigationSplitView {
-            List(selection: $selection) {
-                ForEach(trips) { trip in
-                    TripListItem(trip: trip)
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                deleteTrip(trip)
-                                WidgetCenter.shared.reloadTimelines(ofKind: "TripsWidget")
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                        }
-                }
-                .onDelete(perform: deleteTrips(at:))
-            }
-            .overlay {
-                if trips.isEmpty {
-                    ContentUnavailableView {
-                         Label("No Trips", systemImage: "car.circle")
-                    } description: {
-                         Text("New trips you create will appear here.")
-                    }
-                }
-            }
-            .navigationTitle("Upcoming Trips")
+            TripListView(selection: $selection, tripCount: $tripCount,
+                         unreadTripIdentifiers: $unreadTripIdentifiers,
+                         searchText: searchText)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     EditButton()
-                        .disabled(trips.isEmpty)
+                        .disabled(tripCount == 0)
                 }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
                     Spacer()
                     Button {
                         showAddTrip = true
@@ -65,32 +43,50 @@ struct ContentView: View {
                 }
             }
         }
+        .task {
+            unreadTripIdentifiers = await DataModel.shared.unreadTripIdentifiersInUserDefaults
+        }
+        .searchable(text: $searchText, placement: .sidebar)
         .sheet(isPresented: $showAddTrip) {
             NavigationStack {
                 AddTripView()
             }
             .presentationDetents([.medium, .large])
         }
-    }
-    
-    private func deleteTrips(at offsets: IndexSet) {
-        withAnimation {
-            offsets.map { trips[$0] }.forEach(deleteTrip)
+        .onChange(of: selection) { _, newValue in
+            if let newSelection = newValue {
+                if let index = unreadTripIdentifiers.firstIndex(where: {
+                    $0 == newSelection.persistentModelID
+                }) {
+                    unreadTripIdentifiers.remove(at: index)
+                }
+            }
         }
-    }
-    
-    private func deleteTrip(_ trip: Trip) {
-        /**
-         Unselect the item before deleting it.
-         */
-        if trip.persistentModelID == selection?.persistentModelID {
-            selection = nil
+        .onChange(of: scenePhase) { _, newValue in
+            Task {
+                if newValue == .active {
+                    unreadTripIdentifiers += await DataModel.shared.findUnreadTripIdentifiers()
+                } else {
+                    // Persist the unread trip identifiers for the next launch session.
+                    await DataModel.shared.setUnreadTripIdentifiersInUserDefaults(unreadTripIdentifiers)
+                }
+            }
         }
-        modelContext.delete(trip)
+        #if os(macOS)
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+            Task {
+                unreadTripIdentifiers += await DataModel.shared.findUnreadTripIdentifiers()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in
+            Task {
+                await DataModel.shared.setUnreadTripIdentifiersInUserDefaults(unreadTripIdentifiers)
+            }
+        }
+        #endif
     }
 }
 
-#Preview {
+#Preview(traits: .sampleData) {
     ContentView()
-        .modelContainer(PreviewSampleData.container)
 }

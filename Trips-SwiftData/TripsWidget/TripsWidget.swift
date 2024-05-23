@@ -41,39 +41,45 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        /**
-         modelContainer.mainContext requires main actor.
-         This method returns immediately, but calls the completion handler at the end of the task.
-         */
-        Task { @MainActor in
-            var fetchDescriptor = FetchDescriptor(sortBy: [SortDescriptor(\Trip.startDate, order: .forward)])
-            let now = Date.now
-            fetchDescriptor.predicate = #Predicate { $0.endDate >= now }
-            if let upcomingTrips = try? modelContainer.mainContext.fetch(fetchDescriptor) {
-                if let trip = upcomingTrips.first {
-                    let newEntry = SimpleEntry(date: .now,
-                                               startDate: trip.startDate,
-                                               endDate: trip.endDate,
-                                               name: trip.name,
-                                               destination: trip.destination)
-                    let timeline = Timeline(entries: [newEntry], policy: .after(newEntry.endDate))
-                    completion(timeline)
-                    return
+        var fetchDescriptor = FetchDescriptor(sortBy: [SortDescriptor(\Trip.startDate, order: .forward)])
+        let now = Date.now
+        fetchDescriptor.predicate = #Predicate { $0.endDate >= now }
+        let modelContext = ModelContext(DataModel.shared.modelContainer)
+        
+        if let upcomingTrips = try? modelContext.fetch(fetchDescriptor) {
+            if let trip = upcomingTrips.first {
+                var accommodationStatus: AccommodationStatus = .noAccommodation
+                if let livingAccommodation = trip.livingAccommodation {
+                    accommodationStatus = livingAccommodation.isConfirmed ? .confirmed : .notConfirmed
                 }
+                let newEntry = SimpleEntry(date: .now,
+                                           startDate: trip.startDate,
+                                           endDate: trip.endDate,
+                                           name: trip.name,
+                                           destination: trip.destination,
+                                           accommodationStatus: accommodationStatus)
+                let timeline = Timeline(entries: [newEntry], policy: .after(newEntry.endDate))
+                completion(timeline)
+                return
             }
-            /**
-             Return "No Trips" entry with .never policy when there is no upcoming trip.
-             The main app triggers a widget update when adding a new trip.
-             */
-            let newEntry = SimpleEntry(date: .now,
-                                       startDate: .now,
-                                       endDate: .now,
-                                       name: "No Trips",
-                                       destination: "")
-            let timeline = Timeline(entries: [newEntry], policy: .never)
-            completion(timeline)
         }
+        /**
+         Return "No Trips" entry with `.never` policy when there is no upcoming trip.
+         The main app triggers a widget update when adding a new trip.
+         */
+        let newEntry = SimpleEntry(date: .now,
+                                   startDate: .now,
+                                   endDate: .now,
+                                   name: "No Trips",
+                                   destination: "",
+                                   accommodationStatus: .noAccommodation)
+        let timeline = Timeline(entries: [newEntry], policy: .never)
+        completion(timeline)
     }
+}
+
+enum AccommodationStatus {
+    case noAccommodation, notConfirmed, confirmed
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -83,11 +89,13 @@ struct SimpleEntry: TimelineEntry {
     let endDate: Date
     let name: String
     let destination: String
+    let accommodationStatus: AccommodationStatus
     
     static var placeholderEntry: SimpleEntry {
         let now = Date()
         let sevenDaysAfter = Calendar.current.date(byAdding: .day, value: 7, to: now)
-        return SimpleEntry(date: now, startDate: now, endDate: sevenDaysAfter ?? Date(), name: "Honeymoon", destination: "Hawaii")
+        return SimpleEntry(date: now, startDate: now, endDate: sevenDaysAfter ?? Date(),
+                           name: "Honeymoon", destination: "Hawaii", accommodationStatus: .confirmed)
     }
 }
 
@@ -109,13 +117,28 @@ struct TripsWidgetEntryView: View {
                 
                 Divider()
                 if !entry.destination.isEmpty {
-                    Text(entry.destination)
-                        .font(.system(.title3).weight(.semibold))
-                        .minimumScaleFactor(0.5)
-                    Text(entry.startDate, style: .date)
-                        .foregroundColor(.gray)
-                    Text(entry.endDate, style: .date)
-                        .foregroundColor(.gray)
+                    Group {
+                        Text(entry.destination)
+                            .font(.system(.title3).weight(.semibold))
+                        Text(entry.startDate, style: .date)
+                        Text(entry.endDate, style: .date)
+                        Spacer()
+                        
+                        if entry.accommodationStatus != .noAccommodation {
+                            Button(intent: AccommodationIntent(tripName: entry.name, startDate: entry.startDate, endDate: entry.endDate)) {
+                                HStack {
+                                    Text("Accommodation")
+                                    Image(systemName: entry.accommodationStatus == .confirmed ? "checkmark.circle" : "circle")
+                                }
+                            }
+                            .buttonStyle(.borderless)
+                            .foregroundColor(entry.accommodationStatus == .confirmed ? .green :  .red)
+                        } else {
+                            Text("No accommondation.")
+                        }
+                    }
+                    .foregroundColor(.gray)
+                    .minimumScaleFactor(0.5)
                 }
             }
         }

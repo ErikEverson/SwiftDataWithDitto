@@ -8,14 +8,16 @@ The model class of a living accommodation.
 import Foundation
 import SwiftData
 
-@Model final class LivingAccommodation {
+@Model class LivingAccommodation {
     var address: String
     var placeName: String
+    var isConfirmed: Bool = false
     var trip: Trip?
 
-    init(address: String, placeName: String) {
+    init(address: String, placeName: String, isConfirmed: Bool) {
         self.address = address
         self.placeName = placeName
+        self.isConfirmed = isConfirmed
     }
 }
 
@@ -28,7 +30,7 @@ extension LivingAccommodation {
         placeName.isEmpty ? "No Place" : placeName
     }
     
-    static var preview: LivingAccommodation {
-        .init(address: "Yosemite National Park, CA 95389", placeName: "Yosemite National Park")
+    static var preview: [LivingAccommodation] {
+        [.init(address: "Yosemite National Park, CA 95389", placeName: "Yosemite", isConfirmed: true)]
     }
 }

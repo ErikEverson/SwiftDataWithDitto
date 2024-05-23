@@ -8,11 +8,11 @@ The model class of bucket list items.
 import Foundation
 import SwiftData
 
-@Model final class BucketListItem {
+@Model class BucketListItem {
+    var title: String
     var details: String
     var hasReservation: Bool
     var isInPlan: Bool
-    var title: String
     var trip: Trip?
     
     init(title: String, details: String, hasReservation: Bool, isInPlan: Bool) {
@@ -31,5 +31,18 @@ extension BucketListItem {
             hasReservation: true, isInPlan: true)
         item.trip = .preview
         return item
+    }
+    
+    static var previewBLTs: [BucketListItem] {
+        [
+            BucketListItem(
+            title: "See Half Dome",
+            details: "try to climb Half Dome",
+            hasReservation: true, isInPlan: false),
+            BucketListItem(
+            title: "Picture at the falls",
+            details: "get a lot of them!",
+            hasReservation: true, isInPlan: false)
+        ]
     }
 }

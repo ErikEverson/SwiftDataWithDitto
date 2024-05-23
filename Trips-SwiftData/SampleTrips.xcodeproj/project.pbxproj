@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		404D837829F1BC1600B83906 /* SampleTripsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 404D837729F1BBE500B83906 /* SampleTripsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		40A46D7A2BD5850400DFDBB0 /* AccommodationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A46D792BD5850400DFDBB0 /* AccommodationIntent.swift */; };
+		40A7F15C2BEEFD4D00C2BDE6 /* TripListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7F15B2BEEFD4D00C2BDE6 /* TripListView.swift */; };
 		40A8DA3E2A042C9C000DB4C1 /* SwiftUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A8DA3D2A042C9C000DB4C1 /* SwiftUIHelper.swift */; };
+		40ACF1262BEE0DB900602BB2 /* DataModel+UnreadTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ACF1252BEE0DA700602BB2 /* DataModel+UnreadTrips.swift */; };
+		40ACF1282BEE0E2500602BB2 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEBA842BEC9EA9000C1150 /* DataModel.swift */; };
+		40EEBA852BEC9EBA000C1150 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EEBA842BEC9EA9000C1150 /* DataModel.swift */; };
 		6014A81C296E183900696669 /* UpdateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6014A81B296E183900696669 /* UpdateTripView.swift */; };
 		60449355294A98CF002D030E /* TripsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60449354294A98CF002D030E /* TripsApp.swift */; };
 		60449357294A98CF002D030E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60449356294A98CF002D030E /* ContentView.swift */; };
@@ -22,8 +27,6 @@
 		608C17A6296E29EC00F40827 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C17A3296E29EC00F40827 /* BucketListItem.swift */; };
 		608C17A7296E29EC00F40827 /* LivingAccommodation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C17A4296E29EC00F40827 /* LivingAccommodation.swift */; };
 		60C16FF8298C672E0038AA86 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C16FF7298C672E0038AA86 /* BucketListView.swift */; };
-		682FDAB02A8D0D8200B53876 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAAF2A8D0D8200B53876 /* ModelContainerPreview.swift */; };
-		682FDAB12A8D0D8200B53876 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682FDAAF2A8D0D8200B53876 /* ModelContainerPreview.swift */; };
 		ADB087B32A0E21F6001DDDF1 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB087B22A0E21F6001DDDF1 /* PreviewSampleData.swift */; };
 		ADB087B42A0E21F6001DDDF1 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB087B22A0E21F6001DDDF1 /* PreviewSampleData.swift */; };
 		ADDB2AEB29F730F700572A10 /* TripListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB2AEA29F730F700572A10 /* TripListItem.swift */; };
@@ -92,7 +95,11 @@
 		355348B6A2968D3A7DA8CD76 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
 		404D837629F1BBE500B83906 /* SampleTrips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTrips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404D837729F1BBE500B83906 /* SampleTripsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SampleTripsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		40A46D792BD5850400DFDBB0 /* AccommodationIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationIntent.swift; sourceTree = "<group>"; };
+		40A7F15B2BEEFD4D00C2BDE6 /* TripListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListView.swift; sourceTree = "<group>"; };
 		40A8DA3D2A042C9C000DB4C1 /* SwiftUIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIHelper.swift; sourceTree = "<group>"; };
+		40ACF1252BEE0DA700602BB2 /* DataModel+UnreadTrips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+UnreadTrips.swift"; sourceTree = "<group>"; };
+		40EEBA842BEC9EA9000C1150 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		6014A81B296E183900696669 /* UpdateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTripView.swift; sourceTree = "<group>"; };
 		60449354294A98CF002D030E /* TripsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsApp.swift; sourceTree = "<group>"; };
 		60449356294A98CF002D030E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,7 +117,6 @@
 		608C17A3296E29EC00F40827 /* BucketListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListItem.swift; sourceTree = "<group>"; };
 		608C17A4296E29EC00F40827 /* LivingAccommodation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivingAccommodation.swift; sourceTree = "<group>"; };
 		60C16FF7298C672E0038AA86 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
-		682FDAAF2A8D0D8200B53876 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
 		ADB087B22A0E21F6001DDDF1 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
 		ADDB2AEA29F730F700572A10 /* TripListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListItem.swift; sourceTree = "<group>"; };
 		B4605FD429674A8800B23A61 /* TripsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsWidgetBundle.swift; sourceTree = "<group>"; };
@@ -151,11 +157,12 @@
 		40727D7329F1BF8600410C9D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				40EEBA842BEC9EA9000C1150 /* DataModel.swift */,
+				40ACF1252BEE0DA700602BB2 /* DataModel+UnreadTrips.swift */,
 				608C17A2296E29EB00F40827 /* Trip.swift */,
 				608C17A3296E29EC00F40827 /* BucketListItem.swift */,
 				608C17A4296E29EC00F40827 /* LivingAccommodation.swift */,
 				ADB087B22A0E21F6001DDDF1 /* PreviewSampleData.swift */,
-				682FDAAF2A8D0D8200B53876 /* ModelContainerPreview.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 				6044939129546130002D030E /* Trips.entitlements */,
 				60449354294A98CF002D030E /* TripsApp.swift */,
 				60449356294A98CF002D030E /* ContentView.swift */,
+				40A7F15B2BEEFD4D00C2BDE6 /* TripListView.swift */,
 				ADDB2AEA29F730F700572A10 /* TripListItem.swift */,
 				60449384294A9B4B002D030E /* AddTripView.swift */,
 				6014A81B296E183900696669 /* UpdateTripView.swift */,
@@ -217,7 +225,7 @@
 				355348B6A2968D3A7DA8CD76 /* LICENSE.txt */,
 			);
 			name = LICENSE;
-			path = ../LICENSE;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		71422F84FAA30742F015D98A /* Configuration */ = {
@@ -234,6 +242,7 @@
 				B4605FE129674F7E00B23A61 /* TripsWidgetExtension.entitlements */,
 				B4605FD429674A8800B23A61 /* TripsWidgetBundle.swift */,
 				B4605FD629674A8800B23A61 /* TripsWidget.swift */,
+				40A46D792BD5850400DFDBB0 /* AccommodationIntent.swift */,
 				B4605FD829674A8A00B23A61 /* Assets.xcassets */,
 				B4605FDA29674A8A00B23A61 /* Info.plist */,
 			);
@@ -355,10 +364,12 @@
 				608C17A7296E29EC00F40827 /* LivingAccommodation.swift in Sources */,
 				60449387294C4C4D002D030E /* TripDetailView.swift in Sources */,
 				6044938D2951D93F002D030E /* BucketListItemView.swift in Sources */,
+				40EEBA852BEC9EBA000C1150 /* DataModel.swift in Sources */,
+				40A7F15C2BEEFD4D00C2BDE6 /* TripListView.swift in Sources */,
 				ADDB2AEB29F730F700572A10 /* TripListItem.swift in Sources */,
+				40ACF1262BEE0DB900602BB2 /* DataModel+UnreadTrips.swift in Sources */,
 				608C17A6296E29EC00F40827 /* BucketListItem.swift in Sources */,
 				60449357294A98CF002D030E /* ContentView.swift in Sources */,
-				682FDAB02A8D0D8200B53876 /* ModelContainerPreview.swift in Sources */,
 				40A8DA3E2A042C9C000DB4C1 /* SwiftUIHelper.swift in Sources */,
 				60449355294A98CF002D030E /* TripsApp.swift in Sources */,
 				60449385294A9B4B002D030E /* AddTripView.swift in Sources */,
@@ -371,10 +382,11 @@
 			files = (
 				F4D6BC2829D7E8B40092348D /* Trip.swift in Sources */,
 				B4605FD729674A8800B23A61 /* TripsWidget.swift in Sources */,
-				682FDAB12A8D0D8200B53876 /* ModelContainerPreview.swift in Sources */,
 				ADB087B42A0E21F6001DDDF1 /* PreviewSampleData.swift in Sources */,
+				40A46D7A2BD5850400DFDBB0 /* AccommodationIntent.swift in Sources */,
 				B4605FD529674A8800B23A61 /* TripsWidgetBundle.swift in Sources */,
 				F4D6BC2929D7E8B80092348D /* LivingAccommodation.swift in Sources */,
+				40ACF1282BEE0E2500602BB2 /* DataModel.swift in Sources */,
 				F4D6BC2A29D7E8BD0092348D /* BucketListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,7 +513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -519,13 +531,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trips/Trips.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Trips/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trips/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -533,7 +546,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,7 +560,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -560,13 +574,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trips/Trips.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Trips/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trips/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -574,7 +589,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,7 +603,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -600,15 +616,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TripsWidget/TripsWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripsWidget/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,7 +640,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -635,15 +652,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TripsWidget/TripsWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TripsWidget/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,7 +676,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

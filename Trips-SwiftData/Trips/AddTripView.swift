@@ -97,8 +97,6 @@ struct AddTripView: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        AddTripView()
-    }
+#Preview(traits: .sampleData) {
+    AddTripView()
 }

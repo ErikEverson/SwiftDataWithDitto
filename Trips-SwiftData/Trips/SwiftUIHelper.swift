@@ -26,10 +26,11 @@ extension Color {
     }
 }
 
+@MainActor
 extension ToolbarItemPlacement {
     #if os(macOS)
-    static let navigationBarLeading = automatic
-    static let navigationBarTrailing = automatic
+    static let topBarLeading = automatic
+    static let topBarTrailing = automatic
     static let bottomBar = automatic
     #endif
 }

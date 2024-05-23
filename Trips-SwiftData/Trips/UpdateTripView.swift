@@ -6,6 +6,7 @@ A SwiftUI view that updates a trip.
 */
 
 import SwiftUI
+import SwiftData
 import WidgetKit
 
 struct UpdateTripView: View {
@@ -75,7 +76,7 @@ struct UpdateTripView: View {
         }
         .onAppear {
             /**
-             Populate the start and end date of the trip.
+             Populate the start and end dates of the trip.
              */
             startDate = trip.startDate
             endDate = trip.endDate
@@ -106,8 +107,7 @@ struct UpdateTripView: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        UpdateTripView(trip: .preview)
-    }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    UpdateTripView(trip: trips.first!)
 }

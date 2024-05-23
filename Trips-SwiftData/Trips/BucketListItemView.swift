@@ -49,9 +49,7 @@ struct BucketListItemView: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        BucketListItemView(item: .preview)
-    }
+#Preview(traits: .sampleData) {
+    BucketListItemView(item: .preview)
 }
 

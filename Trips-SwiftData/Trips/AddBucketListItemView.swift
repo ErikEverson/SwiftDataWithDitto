@@ -6,6 +6,7 @@ A SwiftUI view that adds an item to the bucket list.
 */
 
 import SwiftUI
+import SwiftData
 
 struct AddBucketListItemView: View {
     @Environment(\.modelContext) private var modelContext
@@ -71,8 +72,7 @@ struct AddBucketListItemView: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        AddBucketListItemView(trip: .preview)
-    }
+#Preview(traits: .sampleData) {
+    @Previewable @Query var trips: [Trip]
+    AddBucketListItemView(trip: trips.first!)
 }

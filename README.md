@@ -24,12 +24,20 @@ The SwiftData sample sets up the schema with Swift types that conform to the [`P
 Each model file in this sample uses the [`Model()`](https://developer.apple.com/documentation/swiftdata/model()) macro to add necessary conformances for the `PersistentModel` and [`Observable`](https://developer.apple.com/documentation/observation/observable) protocols:
 
 ``` swift
-@Model final class Trip {
-    var destination: String
-    var endDate: Date
+@Model class Trip {
+    #Index<Trip>([\.name], [\.startDate], [\.endDate], [\.name, \.startDate, \.endDate])
+    #Unique<Trip>([\.name, \.startDate, \.endDate])
+    
+    @Attribute(.preserveValueOnDeletion)
     var name: String
+    var destination: String
+    
+    @Attribute(.preserveValueOnDeletion)
     var startDate: Date
     
+    @Attribute(.preserveValueOnDeletion)
+    var endDate: Date
+
     @Relationship(deleteRule: .cascade, inverse: \BucketListItem.trip)
     var bucketList: [BucketListItem] = [BucketListItem]()
     
@@ -39,7 +47,7 @@ Each model file in this sample uses the [`Model()`](https://developer.apple.com/
 
 Additionally, the app sets up the container using [`ModelContainer`](https://developer.apple.com/documentation/swiftdata/modelcontainer) to ensure that all views access the same `ModelContainer`.
 ``` swift
-.modelContainer(for: Trip.self)
+.modelContainer(modelContainer)
 ```
 
 Setting up the `ModelContainer` also creates and set a default [`ModelContext`](https://developer.apple.com/documentation/swiftdata/modelcontext) in the environment. The app can access the `ModelContext` from any scene or view using an environment property.
