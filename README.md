@@ -1,3 +1,9 @@
+# Ditto Additions
+
+Ditto has been added as the backing store behind SwiftData. This repo implements the code from WWDC video https://developer.apple.com/wwdc24/10138 Create a custom Data store with SwiftData.
+
+Note: There is one issue that is present even with the unaltered WWDC code. The child models will cause a crash if they are added. This will likely get fixed in the near future.
+
 # Adopting SwiftData for a Core Data app
 
 Persist data in your app intuitively with the Swift native persistence framework.
