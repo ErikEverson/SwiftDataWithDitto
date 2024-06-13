@@ -74,7 +74,8 @@ struct EditLivingAccommodationsView: View {
                 livingAccommodation.placeName = placeName
                 livingAccommodation.isConfirmed = isConfirmed
             } else {
-                let newLivingAccommodation = LivingAccommodation(address: address,
+                let newLivingAccommodation = LivingAccommodation(dittoId: UUID().uuidString,
+                                                                 address: address,
                                                                  placeName: placeName,
                                                                  isConfirmed: isConfirmed)
                 newLivingAccommodation.trip = trip

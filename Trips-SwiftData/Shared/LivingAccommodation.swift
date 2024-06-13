@@ -9,12 +9,15 @@ import Foundation
 import SwiftData
 
 @Model class LivingAccommodation {
+    var dittoId: String
+    var collectionName: String = "livingAccommodation"
     var address: String
     var placeName: String
     var isConfirmed: Bool = false
     var trip: Trip?
 
-    init(address: String, placeName: String, isConfirmed: Bool) {
+    init(dittoId: String, address: String, placeName: String, isConfirmed: Bool) {
+        self.dittoId = dittoId
         self.address = address
         self.placeName = placeName
         self.isConfirmed = isConfirmed
@@ -31,6 +34,6 @@ extension LivingAccommodation {
     }
     
     static var preview: [LivingAccommodation] {
-        [.init(address: "Yosemite National Park, CA 95389", placeName: "Yosemite", isConfirmed: true)]
+        [.init(dittoId: UUID().uuidString, address: "Yosemite National Park, CA 95389", placeName: "Yosemite", isConfirmed: true)]
     }
 }

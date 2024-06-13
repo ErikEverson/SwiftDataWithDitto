@@ -64,7 +64,7 @@ struct AddBucketListItemView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = BucketListItem(title: title, details: details, hasReservation: hasReservations, isInPlan: isInPlan)
+            let newItem = BucketListItem(dittoId: UUID().uuidString, title: title, details: details, hasReservation: hasReservations, isInPlan: isInPlan)
             modelContext.insert(newItem)
             newItem.trip = trip
             trip.bucketList.append(newItem)

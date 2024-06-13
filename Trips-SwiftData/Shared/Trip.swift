@@ -12,9 +12,11 @@ import SwiftData
 @Model class Trip {
     #Index<Trip>([\.name], [\.startDate], [\.endDate], [\.name, \.startDate, \.endDate])
     #Unique<Trip>([\.name, \.startDate, \.endDate])
-    
+
     @Attribute(.preserveValueOnDeletion)
     var name: String
+    var dittoId: String
+    var collectionName: String = "trips"
     var destination: String
     
     @Attribute(.preserveValueOnDeletion)
@@ -29,14 +31,15 @@ import SwiftData
     @Relationship(deleteRule: .cascade, inverse: \LivingAccommodation.trip)
     var livingAccommodation: LivingAccommodation?
     
-    init(name: String, destination: String, startDate: Date = .now, endDate: Date = .distantFuture) {
+    init(dittoId: String = UUID().uuidString, name: String, destination: String, startDate: Date = .now, endDate: Date = .distantFuture) {
+        self.dittoId = dittoId
         self.name = name
         self.destination = destination
         self.startDate = startDate
         self.endDate = endDate
     }
 }
- 
+
 extension Trip {
     var color: Color {
         let seed = name.hashValue
@@ -53,7 +56,7 @@ extension Trip {
     }
     
     static var preview: Trip {
-        Trip(name: "Trip Name", destination: "Trip destination",
+        Trip(dittoId: UUID().uuidString, name: "Trip Name", destination: "Trip destination",
              startDate: .now, endDate: .now.addingTimeInterval(4 * 3600))
     }
     
@@ -68,10 +71,10 @@ extension Trip {
     
     static var previewTrips: [Trip] {
         [
-            Trip(name: "Camping!", destination: "Yosemite",
+            Trip(dittoId: UUID().uuidString, name: "Camping!", destination: "Yosemite",
                  startDate: date(year: 2024, month: 6, day: 27),
                  endDate: date(year: 2024, month: 7, day: 1)),
-            Trip(name: "Bridalveil Falls", destination: "Yosemite",
+            Trip(dittoId: UUID().uuidString, name: "Bridalveil Falls", destination: "Yosemite",
                  startDate: date(year: 2024, month: 6, day: 28),
                  endDate: date(year: 2024, month: 6, day: 28))
         ]

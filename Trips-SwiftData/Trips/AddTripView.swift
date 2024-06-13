@@ -91,7 +91,7 @@ struct AddTripView: View {
 
     private func addTrip() {
         withAnimation {
-            let newTrip = Trip(name: name, destination: destination, startDate: startDate, endDate: endDate)
+            let newTrip = Trip(dittoId: UUID().uuidString, name: name, destination: destination, startDate: startDate, endDate: endDate)
             modelContext.insert(newTrip)
         }
     }
