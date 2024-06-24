@@ -7,16 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07DDA7972C19031900D2AAA8 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7962C19031900D2AAA8 /* DittoObjC */; };
-		07DDA7992C19031900D2AAA8 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7982C19031900D2AAA8 /* DittoSwift */; };
-		07DDA79B2C19037100D2AAA8 /* DittoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA79A2C19037100D2AAA8 /* DittoStore.swift */; };
-		07DDA79C2C19037100D2AAA8 /* DittoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA79A2C19037100D2AAA8 /* DittoStore.swift */; };
-		07DDA7A32C1A49AA00D2AAA8 /* DittoObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7A22C1A49AA00D2AAA8 /* DittoObjC */; };
-		07DDA7A52C1A49AA00D2AAA8 /* DittoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7A42C1A49AA00D2AAA8 /* DittoSwift */; };
-		07DDA7AD2C1B305500D2AAA8 /* DictionaryCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7AC2C1B305500D2AAA8 /* DictionaryCoder */; };
-		07DDA7AF2C1B305C00D2AAA8 /* DictionaryCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 07DDA7AE2C1B305C00D2AAA8 /* DictionaryCoder */; };
-		07DDA7B12C1B570D00D2AAA8 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA7B02C1B570500D2AAA8 /* DittoManager.swift */; };
-		07DDA7B22C1B570D00D2AAA8 /* DittoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DDA7B02C1B570500D2AAA8 /* DittoManager.swift */; };
+		079700622C29EA4B0098BB60 /* CustomStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079700612C29EA4B0098BB60 /* CustomStore.swift */; };
+		079700632C29EA4B0098BB60 /* CustomStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079700612C29EA4B0098BB60 /* CustomStore.swift */; };
 		404D837829F1BC1600B83906 /* SampleTripsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 404D837729F1BBE500B83906 /* SampleTripsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		40A46D7A2BD5850400DFDBB0 /* AccommodationIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A46D792BD5850400DFDBB0 /* AccommodationIntent.swift */; };
 		40A7F15C2BEEFD4D00C2BDE6 /* TripListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7F15B2BEEFD4D00C2BDE6 /* TripListView.swift */; };
@@ -102,8 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07DDA79A2C19037100D2AAA8 /* DittoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoStore.swift; sourceTree = "<group>"; };
-		07DDA7B02C1B570500D2AAA8 /* DittoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DittoManager.swift; sourceTree = "<group>"; };
+		079700612C29EA4B0098BB60 /* CustomStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStore.swift; sourceTree = "<group>"; };
 		355348B6A2968D3A7DA8CD76 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		404D837629F1BBE500B83906 /* SampleTrips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTrips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404D837729F1BBE500B83906 /* SampleTripsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SampleTripsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,9 +135,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DDA7972C19031900D2AAA8 /* DittoObjC in Frameworks */,
-				07DDA7AD2C1B305500D2AAA8 /* DictionaryCoder in Frameworks */,
-				07DDA7992C19031900D2AAA8 /* DittoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,24 +142,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DDA7A52C1A49AA00D2AAA8 /* DittoSwift in Frameworks */,
-				07DDA7AF2C1B305C00D2AAA8 /* DictionaryCoder in Frameworks */,
-				07DDA7A32C1A49AA00D2AAA8 /* DittoObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07DDA7B32C1B577D00D2AAA8 /* Ditto */ = {
-			isa = PBXGroup;
-			children = (
-				07DDA79A2C19037100D2AAA8 /* DittoStore.swift */,
-				07DDA7B02C1B570500D2AAA8 /* DittoManager.swift */,
-			);
-			path = Ditto;
-			sourceTree = "<group>";
-		};
 		404D836F29F1B28C00B83906 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,13 +160,13 @@
 		40727D7329F1BF8600410C9D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				07DDA7B32C1B577D00D2AAA8 /* Ditto */,
 				40EEBA842BEC9EA9000C1150 /* DataModel.swift */,
 				40ACF1252BEE0DA700602BB2 /* DataModel+UnreadTrips.swift */,
 				608C17A2296E29EB00F40827 /* Trip.swift */,
 				608C17A3296E29EC00F40827 /* BucketListItem.swift */,
 				608C17A4296E29EC00F40827 /* LivingAccommodation.swift */,
 				ADB087B22A0E21F6001DDDF1 /* PreviewSampleData.swift */,
+				079700612C29EA4B0098BB60 /* CustomStore.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -298,9 +274,6 @@
 			);
 			name = SampleTrips;
 			packageProductDependencies = (
-				07DDA7962C19031900D2AAA8 /* DittoObjC */,
-				07DDA7982C19031900D2AAA8 /* DittoSwift */,
-				07DDA7AC2C1B305500D2AAA8 /* DictionaryCoder */,
 			);
 			productName = Trips;
 			productReference = 404D837629F1BBE500B83906 /* SampleTrips.app */;
@@ -321,9 +294,6 @@
 			);
 			name = SampleTripsWidgetExtension;
 			packageProductDependencies = (
-				07DDA7A22C1A49AA00D2AAA8 /* DittoObjC */,
-				07DDA7A42C1A49AA00D2AAA8 /* DittoSwift */,
-				07DDA7AE2C1B305C00D2AAA8 /* DictionaryCoder */,
 			);
 			productName = TripsWidgetExtension;
 			productReference = 404D837729F1BBE500B83906 /* SampleTripsWidgetExtension.appex */;
@@ -358,8 +328,6 @@
 			);
 			mainGroup = 60449348294A98CF002D030E;
 			packageReferences = (
-				07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */,
-				07DDA7AB2C1B305500D2AAA8 /* XCRemoteSwiftPackageReference "DictionaryCoder" */,
 			);
 			productRefGroup = 404D836F29F1B28C00B83906 /* Products */;
 			projectDirPath = "";
@@ -399,6 +367,7 @@
 			files = (
 				F473277029DD0AAA00563D40 /* AddBucketListItemView.swift in Sources */,
 				F473277129DD0AAA00563D40 /* EditLivingAccommodationsView.swift in Sources */,
+				079700632C29EA4B0098BB60 /* CustomStore.swift in Sources */,
 				60C16FF8298C672E0038AA86 /* BucketListView.swift in Sources */,
 				608C17A5296E29EC00F40827 /* Trip.swift in Sources */,
 				6014A81C296E183900696669 /* UpdateTripView.swift in Sources */,
@@ -414,8 +383,6 @@
 				60449357294A98CF002D030E /* ContentView.swift in Sources */,
 				40A8DA3E2A042C9C000DB4C1 /* SwiftUIHelper.swift in Sources */,
 				60449355294A98CF002D030E /* TripsApp.swift in Sources */,
-				07DDA7B12C1B570D00D2AAA8 /* DittoManager.swift in Sources */,
-				07DDA79C2C19037100D2AAA8 /* DittoStore.swift in Sources */,
 				60449385294A9B4B002D030E /* AddTripView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,9 +397,8 @@
 				40A46D7A2BD5850400DFDBB0 /* AccommodationIntent.swift in Sources */,
 				B4605FD529674A8800B23A61 /* TripsWidgetBundle.swift in Sources */,
 				F4D6BC2929D7E8B80092348D /* LivingAccommodation.swift in Sources */,
+				079700622C29EA4B0098BB60 /* CustomStore.swift in Sources */,
 				40ACF1282BEE0E2500602BB2 /* DataModel.swift in Sources */,
-				07DDA7B22C1B570D00D2AAA8 /* DittoManager.swift in Sources */,
-				07DDA79B2C19037100D2AAA8 /* DittoStore.swift in Sources */,
 				F4D6BC2A29D7E8BD0092348D /* BucketListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,58 +736,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/getditto/DittoSwiftPackage";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.7.1;
-			};
-		};
-		07DDA7AB2C1B305500D2AAA8 /* XCRemoteSwiftPackageReference "DictionaryCoder" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/almazrafi/DictionaryCoder.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		07DDA7962C19031900D2AAA8 /* DittoObjC */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
-			productName = DittoObjC;
-		};
-		07DDA7982C19031900D2AAA8 /* DittoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
-			productName = DittoSwift;
-		};
-		07DDA7A22C1A49AA00D2AAA8 /* DittoObjC */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
-			productName = DittoObjC;
-		};
-		07DDA7A42C1A49AA00D2AAA8 /* DittoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7952C19031900D2AAA8 /* XCRemoteSwiftPackageReference "DittoSwiftPackage" */;
-			productName = DittoSwift;
-		};
-		07DDA7AC2C1B305500D2AAA8 /* DictionaryCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7AB2C1B305500D2AAA8 /* XCRemoteSwiftPackageReference "DictionaryCoder" */;
-			productName = DictionaryCoder;
-		};
-		07DDA7AE2C1B305C00D2AAA8 /* DictionaryCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07DDA7AB2C1B305500D2AAA8 /* XCRemoteSwiftPackageReference "DictionaryCoder" */;
-			productName = DictionaryCoder;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 60449349294A98CF002D030E /* Project object */;
 }

@@ -8,7 +8,8 @@ The model class of a living accommodation.
 import Foundation
 import SwiftData
 
-@Model class LivingAccommodation {
+@Model
+class LivingAccommodation {
     var dittoId: String
     var collectionName: String = "livingAccommodation"
     var address: String

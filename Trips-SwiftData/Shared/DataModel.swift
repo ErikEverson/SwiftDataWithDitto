@@ -8,7 +8,6 @@ An actor that provides a SwiftData model container for the whole app and widget,
 
 import SwiftUI
 import SwiftData
-import DittoSwift
 
 actor DataModel {
     struct TransactionAuthor {
@@ -22,8 +21,9 @@ actor DataModel {
     nonisolated lazy var modelContainer: ModelContainer = {
         let modelContainer: ModelContainer
         do {
-            let configuration = DittoStoreConfiguration(name: "Online Playground", schema: Schema([Trip.self, LivingAccommodation.self, BucketListItem.self]), fileURL: try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Testing"))
-            modelContainer = try ModelContainer(for: Trip.self, configurations: configuration)
+            let configuration = ModelConfiguration(schema: Schema([Trip.self]))
+            let configuration1 = JSONStoreConfiguration(name: "trips", schema: Schema([Trip.self]), fileURL: try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Testing"))
+            modelContainer = try ModelContainer(for: Trip.self, configurations: configuration1, configuration)
         } catch {
             fatalError("Failed to create the model container: \(error)")
         }
